@@ -54,3 +54,26 @@ const imagens = [
     }
   ];
 
+let index = 0;
+
+const slide = document.getElementById('slide');
+const changeImage = (addIdx) => {
+  const nextIdx = index + addIdx;
+
+  const limit = imagens.length - 1;
+
+  if(nextIdx < 0) index = limit;
+  else if(nextIdx > limit) index = 0;
+  else index = nextIdx;
+
+  const newImage = imagens[index];
+
+  slide.src = `${servidorDasImagens}/${newImage.arquivo}`;
+  slide.alt = newImage.descricao;
+}
+
+const previous = document.getElementById('anterior');
+previous.onclick = () => changeImage(-1);
+
+const next = document.getElementById('proximo');
+next.onclick = () => changeImage(1);
